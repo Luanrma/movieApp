@@ -33,4 +33,13 @@ class MoviesViewModel: ViewModel() {
             }
         }
     }
+
+    fun getUpcoming() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = RetrofitClient.webservice.getUpcoming(Constants.API_KEY)
+            withContext(Dispatchers.Main) {
+                _movieList.value = response.body()!!.results.sortedByDescending { it.voteAverage }
+            }
+        }
+    }
 }
