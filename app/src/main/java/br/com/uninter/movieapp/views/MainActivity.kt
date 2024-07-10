@@ -38,21 +38,33 @@ class MainActivity : AppCompatActivity() {
             changeColorButton("popular")
         }
 
+        binding.cvUpcoming.setOnClickListener {
+            viewModel.getUpcoming()
+            changeColorButton("upcoming")
+        }
+
         viewModel.getBanner()
     }
 
     private fun changeColorButton(button: String) {
         val greenColor = ResourcesCompat.getColor(resources, R.color.green_200, null)
-        val blueColor = ResourcesCompat.getColor(resources, R.color.blue_200, null)
+        val greyColor = ResourcesCompat.getColor(resources, R.color.gray_100, null)
 
         when(button) {
             "banner" -> {
                 binding.cvBanner.setCardBackgroundColor(greenColor)
-                binding.cvPopulars.setCardBackgroundColor(blueColor)
+                binding.cvPopulars.setCardBackgroundColor(greyColor)
+                binding.cvUpcoming.setCardBackgroundColor(greyColor)
             }
             "popular" -> {
-                binding.cvBanner.setCardBackgroundColor(blueColor)
+                binding.cvBanner.setCardBackgroundColor(greyColor)
                 binding.cvPopulars.setCardBackgroundColor(greenColor)
+                binding.cvUpcoming.setCardBackgroundColor(greyColor)
+            }
+            "upcoming" -> {
+                binding.cvBanner.setCardBackgroundColor(greyColor)
+                binding.cvPopulars.setCardBackgroundColor(greyColor)
+                binding.cvUpcoming.setCardBackgroundColor(greenColor)
             }
         }
     }

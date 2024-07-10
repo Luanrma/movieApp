@@ -15,4 +15,9 @@ interface WebService {
     suspend fun getPopular(
         @Query("api_key") apiKey: String
     ): Response<MovieResponse>
+
+    @GET("upcoming")
+    suspend fun getUpcoming(
+        @Query("api_key") apiKey: String
+    ): Response<MovieResponse>
 }
